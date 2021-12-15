@@ -2,9 +2,12 @@ import React from "react";
 import * as yup from "yup";
 
 import SignupComponent from "../components/SignupComponent";
+import SignupFunction from "../../../apis/public/auth/SignupFunction";
+
+import { toast } from "react-toastify";
 
 const Signup = () => {
-  const initialValues = {
+  const initialFormValues = {
     name: "",
     email: "",
     password: "",
@@ -18,25 +21,37 @@ const Signup = () => {
       .required("Necessary")
       .min(8, "atleast 8 letters")
       .matches(
-        /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "include number,special character and capital character"
       ),
   });
 
-  const submitForm = (values) => {
+  const submitFormFunc = async (values) => {
     console.log(values);
+    const body = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    const { data } = await SignupFunction(body);
+
+    if (data.type === "success") {
+      toast.success("Registered successfully");
+    } else {
+      toast.error(data.msg);
+    }
   };
 
   return (
     <>
-      <div className="signup-background">
+      <div>
         <div className="container-sm row mx-auto">
-          <div className="my-5 d-flex flex-column justify-content-center shadow">
+          <div className="my-5 d-flex flex-column justify-content-center shadow signup-background">
             <div className="display-2 text-center p-3">SignUp</div>
             <SignupComponent
-              initialValues={initialValues}
+              initialFormValues={initialFormValues}
               yupValidation={yupValidation}
-              submitForm={submitForm}
+              submitFormFunc={submitFormFunc}
             />
           </div>
         </div>

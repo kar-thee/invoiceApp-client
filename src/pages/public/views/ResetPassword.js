@@ -1,9 +1,21 @@
 import React from "react";
 import * as yup from "yup";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import ResetPwdComponent from "../components/ResetPwdComponent";
+import ResetPwdFunction from "../../../apis/public/auth/ResetPwdFunction.js";
 
 const ResetPassword = () => {
+  const { resetString } = useParams();
+
+  const resetParamsFunc = () => {
+    const dataArray = resetString.split("ihaveAmnesia");
+    const resetCode = dataArray[0];
+    const authToken = dataArray[1];
+    return { resetCode, authToken };
+  };
+
   const initialValues = {
     password: "",
     confirmPassword: "",
@@ -15,8 +27,8 @@ const ResetPassword = () => {
       .required("Necessary")
       .min(8, "atleast 8 letters")
       .matches(
-        /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "include number,special character and capital character"
       ),
     confirmPassword: yup
       .string()
@@ -25,16 +37,29 @@ const ResetPassword = () => {
       .oneOf([yup.ref("password")], "Passwords are not same"),
   });
 
-  const submitForm = (values) => {
-    console.log(values);
+  const submitForm = async (values) => {
+    const { resetCode, authToken } = resetParamsFunc();
+    const body = {
+      newPassword: values.confirmPassword,
+      resetCode,
+    };
+    const { data } = await ResetPwdFunction(body, authToken);
+
+    if (data.type === "success") {
+      toast.success(data.msg);
+    } else {
+      toast.error(data.msg);
+    }
   };
 
   return (
     <>
-      <div className="signup-background">
+      <div>
         <div className="container-sm row mx-auto">
-          <div className="my-5 d-flex flex-column justify-content-center shadow">
-            <div className="display-2 text-center p-3">SignIn</div>
+          <div className="my-5 d-flex flex-column justify-content-center shadow signup-background">
+            <div className="display-2 text-center p-3 text-danger mb-2">
+              Reset Password
+            </div>
             <ResetPwdComponent
               initialValues={initialValues}
               yupValidation={yupValidation}

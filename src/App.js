@@ -1,8 +1,11 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 //publicLayout
 import Home from "./components/Home";
-import Navigation from "./components/Navigation";
+// import Navigation from "./components/Navigation";
 import NotFound from "./components/NotFound";
 //authRoutes
 import Signup from "./pages/public/views/Signup";
@@ -43,6 +46,17 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </UserProvider>
     </>
   );

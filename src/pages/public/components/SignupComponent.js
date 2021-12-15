@@ -1,14 +1,18 @@
 import React from "react";
 import { Formik } from "formik";
 
-const SignupComponent = ({ initialValues, yupValidation, submitForm }) => {
+const SignupComponent = ({
+  initialFormValues,
+  yupValidation,
+  submitFormFunc,
+}) => {
   return (
     <>
       <div className="p-1 p-lg-5 col-sm-8 col-md-9 col-lg-6 mx-sm-auto">
         <Formik
-          initialValues={initialValues}
+          initialValues={initialFormValues}
           validationSchema={yupValidation}
-          onSubmit={submitForm}
+          onSubmit={submitFormFunc}
         >
           {(formik) => (
             <form onSubmit={formik.handleSubmit}>
