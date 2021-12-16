@@ -1,11 +1,21 @@
 import React from "react";
 import * as yup from "yup";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import SigninComponent from "../components/SigninComponent";
 import SigninFunction from "../../../apis/public/auth/SigninFunction";
+import Loader from "../../../helpers/Loader";
+
+import useStatesFunc from "../../../hooks/useStatesFunc";
+import useDispatchFunc from "../../../hooks/useDispatchFunc";
 
 const Signin = () => {
+  const [{ loading }] = useStatesFunc();
+  const [dispatch] = useDispatchFunc();
+
+  const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
@@ -24,19 +34,33 @@ const Signin = () => {
   });
 
   const submitForm = async (values) => {
-    console.log(values);
+    dispatch({ type: "loadingStart" });
     const body = {
       email: values.email,
       password: values.password,
     };
     const { data } = await SigninFunction(body);
-
+    dispatch({ type: "loadingStop" });
     if (data.type === "success") {
       toast.success(data.msg);
+      //save it to localStorage
+      dispatch({
+        type: "signin",
+        payload: {
+          token: data.token,
+          role: data.role,
+          idVerified: data.isVerified,
+        },
+      });
+      navigate("/app/dashboard");
     } else {
       toast.error(data.msg);
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>

@@ -1,14 +1,19 @@
 import React from "react";
-import UserContext from "./UserContext";
+
+import stateContext from "./stateContext";
+import dispatchContext from "./dispatchContext";
+
+import useStore from "../hooks/useStore";
 
 const UserProvider = ({ children }) => {
-  const st = {
-    msg: "sdcsdc",
-  };
+  const [state, dispatch] = useStore();
+
   return (
-    <UserContext.Provider value={st}>
-      <>{children}</>
-    </UserContext.Provider>
+    <dispatchContext.Provider value={dispatch}>
+      <stateContext.Provider value={state}>
+        <>{children}</>
+      </stateContext.Provider>
+    </dispatchContext.Provider>
   );
 };
 

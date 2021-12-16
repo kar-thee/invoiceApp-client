@@ -4,8 +4,15 @@ import { toast } from "react-toastify";
 
 import ForgotPwdComponent from "../components/ForgotPwdComponent";
 import ForgotPwdFunction from "../../../apis/public/auth/ForgotPwdFunction";
+import Loader from "../../../helpers/Loader";
+
+import useStatesFunc from "../../../hooks/useStatesFunc";
+import useDispatchFunc from "../../../hooks/useDispatchFunc";
 
 const ForgotPassword = () => {
+  const [{ loading }] = useStatesFunc();
+  const [dispatch] = useDispatchFunc();
+
   const initialValues = {
     email: "",
   };
@@ -15,18 +22,23 @@ const ForgotPassword = () => {
   });
 
   const submitForm = async (values) => {
+    dispatch({ type: "loadingStart" });
     console.log(values);
     const body = {
       emailId: values.email,
     };
     const { data } = await ForgotPwdFunction(body);
-
+    dispatch({ type: "loadingStop" });
     if (data.type === "success") {
       toast.success(data.msg);
     } else {
       toast.error(data.msg);
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>

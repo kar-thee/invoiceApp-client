@@ -1,11 +1,9 @@
-import React from "react";
+import useUserFunc from "../hooks/useUserFunc";
 
-const Protected = () => {
-  return (
-    <div>
-      <div>Protected</div>
-    </div>
-  );
+const Protected = ({ children, redirect }) => {
+  const [checkAuth] = useUserFunc();
+
+  return checkAuth() ? children : redirect;
 };
 
 export default Protected;

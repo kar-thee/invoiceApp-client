@@ -3,10 +3,20 @@ import * as yup from "yup";
 
 import SignupComponent from "../components/SignupComponent";
 import SignupFunction from "../../../apis/public/auth/SignupFunction";
+import Loader from "../../../helpers/Loader";
+
+import useDispatchFunc from "../../../hooks/useDispatchFunc";
+import useStatesFunc from "../../../hooks/useStatesFunc";
 
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const [dispatch] = useDispatchFunc();
+  const [{ loading }] = useStatesFunc();
+
+  const navigate = useNavigate();
+
   const initialFormValues = {
     name: "",
     email: "",
@@ -27,7 +37,7 @@ const Signup = () => {
   });
 
   const submitFormFunc = async (values) => {
-    console.log(values);
+    dispatch({ type: "loadingStart" });
     const body = {
       name: values.name,
       email: values.email,
@@ -35,12 +45,23 @@ const Signup = () => {
     };
     const { data } = await SignupFunction(body);
 
+    dispatch({ type: "loadingStop" });
+
     if (data.type === "success") {
+      dispatch({
+        type: "signup",
+        payload: { token: data.token, role: data.role },
+      });
       toast.success("Registered successfully");
+      navigate("/app/dashboard");
     } else {
       toast.error(data.msg);
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>

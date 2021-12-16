@@ -16,6 +16,7 @@ import EmailActivation from "./pages/public/views/EmailActivation";
 import UserProvider from "./context/UserProvider";
 //privateRoutes
 import Dashboard from "./pages/private/views/Dashboard";
+import Protected from "./components/Protected";
 
 function App() {
   return (
@@ -40,7 +41,14 @@ function App() {
           </Route>
 
           <Route path="/app">
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route
+              path="dashboard"
+              element={
+                <Protected redirect={<Signin />}>
+                  <Dashboard />
+                </Protected>
+              }
+            />
             <Route path="" element={<NotFound />} />
           </Route>
 
