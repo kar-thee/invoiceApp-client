@@ -17,11 +17,13 @@ import UserProvider from "./context/UserProvider";
 //privateRoutes
 import Dashboard from "./pages/private/views/Dashboard";
 import Protected from "./components/Protected";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
     <>
       <UserProvider>
+        <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
 

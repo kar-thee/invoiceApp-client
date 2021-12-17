@@ -11,7 +11,7 @@ const useUserFunc = () => {
   const getRole = () => {
     const rolesArray = roleArray();
     if (role) {
-      return role ? rolesArray.filter((rolesItem) => rolesItem === role) : "";
+      return role ? rolesArray.find((rolesItem) => rolesItem === role) : "";
     } else {
       return null;
     }

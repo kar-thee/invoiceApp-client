@@ -5,11 +5,15 @@ import useUserFunc from "../../../hooks/useUserFunc";
 import useDispatchFunc from "../../../hooks/useDispatchFunc";
 import { toast } from "react-toastify";
 
-import { ADMIN, MANAGER, USER, EMPLOYEE } from "../../../helpers/UserRoles";
+import { ADMIN, MANAGER, EMPLOYEE, CUSTOMER } from "../../../helpers/UserRoles";
+import AdminBoard from "./AdminBoard";
+import ManagerBoard from "./ManagerBoard";
+import EmployeeBoard from "./EmployeeBoard";
+import CustomerBoard from "./CustomerBoard";
 
 const Dashboard = () => {
   const [, getRole] = useUserFunc();
-  const role = getRole()[0];
+  const role = getRole();
   const [dispatch] = useDispatchFunc();
   const navigate = useNavigate();
 
@@ -22,10 +26,10 @@ const Dashboard = () => {
   return (
     <div>
       <div>Dashboard</div>
-      {role === ADMIN && <>Welcome {ADMIN}</>}
-      {role === MANAGER && <>Welcome {MANAGER}</>}
-      {role === EMPLOYEE && <>Welcome {EMPLOYEE}</>}
-      {role === USER && <>Welcome {USER}</>}
+      {role === ADMIN && <AdminBoard role={role} />}
+      {role === MANAGER && <ManagerBoard role={role} />}
+      {role === EMPLOYEE && <EmployeeBoard role={role} />}
+      {role === CUSTOMER && <CustomerBoard role={role} />}
     </div>
   );
 };

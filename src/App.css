@@ -2,3 +2,12 @@
   background-color: aquamarine !important;
   height: max-content !important;
 }
+
+.navBar-background {
+  background-color: #7fffd4 !important;
+}
+
+#privateToggler {
+  top: 10;
+  left: 3;
+}
