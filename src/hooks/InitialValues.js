@@ -4,6 +4,7 @@ const initialValues = {
   idVerified: false,
   role: null,
   loading: false,
+  sidebar: true,
   success: null,
   error: null,
 };

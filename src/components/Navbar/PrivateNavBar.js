@@ -10,11 +10,7 @@ const PrivateNavBar = () => {
         <button
           className="navbar-toggler d-block"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#publicNav"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          onClick={() => dispatch({ type: "sidebar" })}
         >
           <span className="navbar-toggler-icon"></span>
         </button>

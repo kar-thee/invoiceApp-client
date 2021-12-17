@@ -32,6 +32,12 @@ const ReducerFunction = (state, actionObj) => {
         role: null,
       };
 
+    case "sidebar":
+      return {
+        ...state,
+        sidebar: !state.sidebar,
+      };
+
     case "loadingStart":
       return { ...state, loading: true };
 
