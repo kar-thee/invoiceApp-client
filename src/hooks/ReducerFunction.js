@@ -32,7 +32,7 @@ const ReducerFunction = (state, actionObj) => {
         role: null,
       };
 
-    case "sidebar":
+    case "sidebarToggle":
       return {
         ...state,
         sidebar: !state.sidebar,

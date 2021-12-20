@@ -1,13 +1,13 @@
 import React from "react";
 
-const CustomerScreen = () => {
+const Priorities = () => {
   return (
     <>
       <div className="col  container-fluid bg-dark" style={{ height: "100vh" }}>
         <div className=" bg-danger">
           <div className="">
             <div className="container" style={{ height: "100vh" }}>
-              Hello Customer
+              <h1>priority</h1>
             </div>
           </div>
         </div>
@@ -16,4 +16,4 @@ const CustomerScreen = () => {
   );
 };
 
-export default CustomerScreen;
+export default Priorities;

@@ -10,7 +10,7 @@ const PrivateNavBar = () => {
         <button
           className="navbar-toggler d-block"
           type="button"
-          onClick={() => dispatch({ type: "sidebar" })}
+          onClick={() => dispatch({ type: "sidebarToggle" })}
         >
           <span className="navbar-toggler-icon"></span>
         </button>

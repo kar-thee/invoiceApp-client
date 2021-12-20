@@ -13,7 +13,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-md navbar-light navBar-background  p-2">
+      <nav className="navbar navbar-expand-md navbar-light navBar-background p-3">
         <div className="container-fluid">
           {/* navbar here */}
           <div className={isAuth ? "ms-3" : ""}>
@@ -23,7 +23,7 @@ const Navigation = () => {
                   ? "navbar-brand brandName p-md-3 p-sm-3 ms-sm-5 ms-5"
                   : "navbar-brand brandName p-md-2 pe-sm-0 "
               }
-              to="/"
+              to={isAuth ? "/app/dashboard" : "/"}
             >
               invoiceApp
             </Link>

@@ -16,14 +16,18 @@ import EmailActivation from "./pages/public/views/EmailActivation";
 import UserProvider from "./context/UserProvider";
 //privateRoutes
 import Dashboard from "./pages/private/views/Dashboard";
+import Features from "./pages/private/views/Features";
 import Protected from "./components/Protected";
 import Navigation from "./components/Navigation";
+import Priorities from "./pages/private/views/Priorities";
+import MainScreen from "./pages/private/views/MainScreen";
 
 function App() {
   return (
     <>
       <UserProvider>
         <Navigation />
+
         <Routes>
           <Route path="/" element={<Home />} />
 
@@ -42,20 +46,52 @@ function App() {
             <Route path="" element={<NotFound />} />
           </Route>
 
-          <Route path="/app">
+          <Route
+            path="/app"
+            element={
+              <Protected redirect={<Signin />}>
+                <Dashboard />
+              </Protected>
+            }
+          >
+            <Route
+              path=""
+              element={
+                <Protected redirect={<Signin />}>
+                  <MainScreen />
+                </Protected>
+              }
+            />
             <Route
               path="dashboard"
               element={
                 <Protected redirect={<Signin />}>
-                  <Dashboard />
+                  <MainScreen />
                 </Protected>
               }
             />
-            <Route path="" element={<NotFound />} />
+            <Route
+              path="features"
+              element={
+                <Protected redirect={<Signin />}>
+                  <Features />
+                </Protected>
+              }
+            />
+            <Route
+              path="priority"
+              element={
+                <Protected redirect={<Signin />}>
+                  <Priorities />
+                </Protected>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+
         <ToastContainer
           position="bottom-right"
           autoClose={5000}
