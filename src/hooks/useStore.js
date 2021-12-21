@@ -8,14 +8,14 @@ const useStore = () => {
     //intialising states if present in localstorage
     const userToken = JSON.parse(localStorage.getItem("TOKEN"));
     const userRole = JSON.parse(localStorage.getItem("ROLE"));
-    const idVerified = JSON.parse(localStorage.getItem("IDVERIFIED")) || false;
+    const idVerified = JSON.parse(localStorage.getItem("IDVERIFIED"));
 
     return userToken && userRole
       ? {
           ...initialValues,
           token: userToken || null,
           role: userRole || null,
-          idVerified,
+          idVerified: idVerified || null,
         }
       : initialValues;
   });

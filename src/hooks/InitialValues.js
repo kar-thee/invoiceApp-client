@@ -1,6 +1,5 @@
 const initialValues = {
   token: null,
-  userObj: null,
   idVerified: false,
   role: null,
   loading: false,

@@ -5,6 +5,7 @@ const SignupComponent = ({
   initialFormValues,
   yupValidation,
   submitFormFunc,
+  userRoleArray,
 }) => {
   return (
     <>
@@ -75,6 +76,34 @@ const SignupComponent = ({
                   </div>
                 )}
                 {formik.touched.password && !formik.errors.password && (
+                  <div className="form-text text-success ms-4">Looks Good</div>
+                )}
+              </div>
+
+              <div className="form-floating mb-3">
+                <select
+                  className="form-select rounded-pill"
+                  id="userType"
+                  placeholder="Your userRole"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.userType}
+                >
+                  {userRoleArray &&
+                    userRoleArray.map((userType) => (
+                      <option key={userType} value={userType}>
+                        {userType}
+                      </option>
+                    ))}
+                </select>
+                <label htmlFor="userType">userType/userRole</label>
+
+                {formik.touched.userType && formik.errors.userType && (
+                  <div className="form-text text-danger ms-4">
+                    {formik.errors.userType}
+                  </div>
+                )}
+                {formik.touched.userType && !formik.errors.userType && (
                   <div className="form-text text-success ms-4">Looks Good</div>
                 )}
               </div>

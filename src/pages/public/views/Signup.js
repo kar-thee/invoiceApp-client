@@ -17,10 +17,13 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
+  const userRoleArray = ["EMPLOYEE", "MANAGER", "ADMIN"];
+
   const initialFormValues = {
     name: "",
     email: "",
     password: "",
+    userType: "",
   };
 
   const yupValidation = yup.object().shape({
@@ -34,6 +37,7 @@ const Signup = () => {
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "include number,special character and capital character"
       ),
+    userType: yup.string().oneOf(userRoleArray),
   });
 
   const submitFormFunc = async (values) => {
@@ -42,6 +46,7 @@ const Signup = () => {
       name: values.name,
       email: values.email,
       password: values.password,
+      userType: values.userType.toLowerCase(),
     };
     const { data } = await SignupFunction(body);
 
@@ -73,6 +78,7 @@ const Signup = () => {
               initialFormValues={initialFormValues}
               yupValidation={yupValidation}
               submitFormFunc={submitFormFunc}
+              userRoleArray={userRoleArray}
             />
           </div>
         </div>

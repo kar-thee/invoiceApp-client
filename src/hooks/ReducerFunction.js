@@ -1,21 +1,17 @@
-import { ADMIN } from "../helpers/UserRoles";
-
 const ReducerFunction = (state, actionObj) => {
   switch (actionObj.type) {
     case "signup":
       return {
         ...state,
         token: actionObj.payload.token,
-        // userObj: actionObj.payload.userObj,
-        role: actionObj.payload.role || ADMIN,
+        role: actionObj.payload.role,
       };
 
     case "signin":
       return {
         ...state,
         token: actionObj.payload.token,
-        userObj: actionObj.payload.userObj,
-        role: actionObj.payload.role || ADMIN,
+        role: actionObj.payload.role,
         idVerified: actionObj.payload.idVerified,
       };
     case "accountVerification":
