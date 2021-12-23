@@ -22,7 +22,7 @@ import Protected from "./components/Protected";
 import Priorities from "./pages/private/views/Priorities";
 import MainScreen from "./pages/private/views/MainScreen";
 
-import Invoice from "./components/Invoice";
+import Invoice from "./components/InvoicePage/Invoice";
 import NavigationBar from "./NavigationBar";
 
 function App() {
