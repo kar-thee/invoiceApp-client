@@ -40,6 +40,9 @@ const ReducerFunction = (state, actionObj) => {
     case "loadingStop":
       return { ...state, loading: false };
 
+    case "invoiceView":
+      return { ...state, invoiceState: !state.invoiceState };
+
     case "success":
       return { ...state, loading: false, success: true };
 

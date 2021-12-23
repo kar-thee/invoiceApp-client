@@ -18,18 +18,23 @@ import UserProvider from "./context/UserProvider";
 import Dashboard from "./pages/private/views/Dashboard";
 import Features from "./pages/private/views/Features";
 import Protected from "./components/Protected";
-import Navigation from "./components/Navigation";
+// import Navigation from "./components/Navigation";
 import Priorities from "./pages/private/views/Priorities";
 import MainScreen from "./pages/private/views/MainScreen";
+
+import Invoice from "./components/Invoice";
+import NavigationBar from "./NavigationBar";
 
 function App() {
   return (
     <>
       <UserProvider>
-        <Navigation />
+        <NavigationBar />
 
         <Routes>
           <Route path="/" element={<Home />} />
+
+          <Route path="/invoice" element={<Invoice />} />
 
           <Route path="/user">
             <Route path="signup" element={<Signup />} />
