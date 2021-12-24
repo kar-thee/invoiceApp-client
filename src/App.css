@@ -26,3 +26,14 @@
     border-radius: 5%;
   }
 }
+
+.invoiceLogoSize {
+  height: 100px;
+  width: auto;
+}
+
+@media print {
+  .invoiceLogoSize {
+    width: 120px;
+  }
+}

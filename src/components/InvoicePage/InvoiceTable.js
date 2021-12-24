@@ -1,6 +1,15 @@
 import React from "react";
 
-const InvoiceTable = () => {
+const InvoiceTable = ({
+  productName,
+  qty,
+  price,
+  tax,
+  taxCost,
+  costAfterTax,
+  totalTaxAmt,
+  totalFinalAmt,
+}) => {
   return (
     <>
       {/* here table */}
@@ -21,24 +30,21 @@ const InvoiceTable = () => {
             <tr className="">
               <td>1.</td>
               <td>
-                <div className="text-wrap text-break">
-                  {" "}
-                  Graphics Card RTX 2070 Super
-                </div>
+                <div className="text-wrap text-break">{productName}</div>
               </td>
-              <td>2</td>
-              <td>50000.00</td>
-              <td>12%</td>
-              <td>{((12 / 100) * 50000).toFixed(2)}</td>
-              <td>{((112 / 100) * 50000).toFixed(2)}</td>
+              <td>{qty}</td>
+              <td>{price}</td>
+              <td>{tax}</td>
+              <td>{taxCost}</td>
+              <td>{costAfterTax}</td>
             </tr>
             {/* here total Amount */}
             <tr className="my-5 py-5">
               <td colSpan="5" className="fw-bold">
                 Total Amount
               </td>
-              <td>₹{((12 / 100) * 50000 * 2).toFixed(2)}</td>
-              <td>₹{((112 / 100) * 50000 * 2).toFixed(2)}</td>
+              <td>₹{totalTaxAmt}</td>
+              <td>₹{totalFinalAmt}</td>
             </tr>
           </tbody>
         </table>
