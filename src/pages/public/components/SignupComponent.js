@@ -89,6 +89,7 @@ const SignupComponent = ({
                   onBlur={formik.handleBlur}
                   value={formik.values.userType}
                 >
+                  <option value={null}>Select any one</option>
                   {userRoleArray &&
                     userRoleArray.map((userType) => (
                       <option key={userType} value={userType}>
@@ -103,9 +104,13 @@ const SignupComponent = ({
                     {formik.errors.userType}
                   </div>
                 )}
-                {formik.touched.userType && !formik.errors.userType && (
-                  <div className="form-text text-success ms-4">Looks Good</div>
-                )}
+                {formik.touched.userType &&
+                  !formik.errors.userType &&
+                  formik.values.userType && (
+                    <div className="form-text text-success ms-4">
+                      Looks Good
+                    </div>
+                  )}
               </div>
 
               <div className="p-2 mb-3">

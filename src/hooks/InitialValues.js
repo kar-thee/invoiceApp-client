@@ -4,7 +4,8 @@ const initialValues = {
   role: null,
   loading: false,
   sidebar: true,
-  invoiceState: false,
+  invoiceData: {},
+  invoiceView: false,
   success: null,
   error: null,
 };

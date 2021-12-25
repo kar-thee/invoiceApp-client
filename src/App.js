@@ -23,6 +23,8 @@ import Priorities from "./pages/private/views/Priorities";
 import MainScreen from "./pages/private/views/MainScreen";
 
 import Invoice from "./components/InvoicePage/Invoice";
+import InvoicePdf from "./components/InvoicePage/InvoicePdf";
+
 import NavigationBar from "./NavigationBar";
 
 function App() {
@@ -34,7 +36,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/invoice" element={<Invoice />} />
+          <Route path="/invoice/:id" element={<Invoice />} />
+          <Route path="/invoicePdf/:id" element={<InvoicePdf />} />
 
           <Route path="/user">
             <Route path="signup" element={<Signup />} />

@@ -11,7 +11,6 @@ import InvoiceFooterNote from "./InvoiceFooterNote";
 
 import useDispatchFunc from "../../hooks/useDispatchFunc";
 import InvoiceFetchDataFunc from "../../apis/public/others/InvoiceFetchDataFunc";
-import { toast } from "react-toastify";
 import useStatesFunc from "../../hooks/useStatesFunc";
 import Loader from "../../helpers/Loader";
 
@@ -41,24 +40,15 @@ const invoiceDataObj = {
 const Invoice = () => {
   const [dispatch] = useDispatchFunc();
   const { id } = useParams();
-  const [{ loading, invoiceData }] = useStatesFunc();
+  const [{ invoiceData }] = useStatesFunc();
 
   useEffect(() => {
     const getinvoiceData = async () => {
-      dispatch({ type: "loadingStart" });
       const { data } = await InvoiceFetchDataFunc(id);
       dispatch({
         type: "invoiceDataFetched",
         payload: { invoiceData: data.invoiceFound },
       });
-
-      if (data.type === "success") {
-        toast.success(data.msg);
-        dispatch({ type: "signout" });
-      } else {
-        toast.warning(data.msg);
-      }
-      dispatch({ type: "loadingStop" });
     };
     getinvoiceData();
 
@@ -89,24 +79,13 @@ const Invoice = () => {
     dueDate,
   } = invoiceData;
 
-  if (loading) {
-    return (
-      <>
-        <Loader />
-      </>
-    );
-  }
   return (
     <>
-      {console.log(invoiceData, "invoiceData")}
-      <div className="bg-dark">
+      <div>
         <div>
-          <div
-            className="bg-white mx-auto"
-            style={{ maxHeight: "297mm", maxWidth: "210mm" }}
-          >
+          <div>
             {/* here comes everything */}
-            <div className="container p-5 ">
+            <div className="p-5">
               <div className="">
                 <InvoiceLogoHeader invoiceLogoImg={invoiceLogoImg} />
 
@@ -144,34 +123,6 @@ const Invoice = () => {
               </div>
             </div>
           </div>
-        </div>
-        {/* here go back btn */}
-        <div className="position-absolute top-0 end-0 d-print-none">
-          <Link
-            to="/app/dashboard"
-            className="btn btn-outline-light text-danger"
-          >
-            Go to dashboard
-          </Link>
-        </div>
-        {/* here print and savePdf btns */}
-        <div className="position-absolute  bottom-50  d-flex flex-column ms-3 d-print-none">
-          <button
-            className="btn btn-info mb-5"
-            onClick={() => {
-              window.print();
-            }}
-          >
-            Print
-          </button>
-          <a
-            className="btn btn-danger"
-            href={`${process.env.REACT_APP_INVOICEPDF}/${id}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Save as PDF
-          </a>
         </div>
       </div>
     </>

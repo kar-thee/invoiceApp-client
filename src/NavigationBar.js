@@ -7,7 +7,7 @@ const NavigationBar = () => {
   const [state] = useStatesFunc();
   return (
     <>
-      <> {state.invoiceState ? null : <Navigation />}</>
+      <> {state.invoiceView ? null : <Navigation />}</>
     </>
   );
 };

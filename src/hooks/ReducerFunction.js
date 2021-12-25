@@ -41,7 +41,10 @@ const ReducerFunction = (state, actionObj) => {
       return { ...state, loading: false };
 
     case "invoiceView":
-      return { ...state, invoiceState: !state.invoiceState };
+      return { ...state, invoiceView: !state.invoiceView };
+
+    case "invoiceDataFetched":
+      return { ...state, invoiceData: { ...actionObj.payload.invoiceData } };
 
     case "success":
       return { ...state, loading: false, success: true };
