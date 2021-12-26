@@ -21,7 +21,7 @@ const InvoiceTable = ({
               <th>Description</th>
               <th>Qty</th>
               <th title="per quantity">Price</th>
-              <th title="per quantity">Tax</th>
+              <th title="per quantity">Tax%</th>
               <th title="per quantity">Tax Amt</th>
               <th title="per quantity">Total</th>
             </tr>

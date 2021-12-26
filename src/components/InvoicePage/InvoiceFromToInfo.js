@@ -6,13 +6,13 @@ const InvoiceFromToInfo = ({ sellerName, customerName, customerEmail }) => {
       {/* soldBy and ClientName */}
       <div className="d-flex justify-content-between mb-5">
         <div className="d-flex flex-column">
-          <div className="fw-bold"> Sold By :</div>
+          <div className="fw-bold"> Billing From :</div>
           <div className="d-flex flex-column">
             <div>{sellerName}</div>
           </div>
         </div>
         <div className="d-flex flex-column align-items-end">
-          <div className="fw-bold">Bill To :</div>
+          <div className="fw-bold">Billing To :</div>
           <div className="">
             <div className="d-flex flex-column align-items-end">
               <div>{customerName}</div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import InvoiceLogoHeader from "./InvoiceLogoHeader";
@@ -14,15 +14,23 @@ import InvoiceFetchDataFunc from "../../apis/public/others/InvoiceFetchDataFunc"
 import { toast } from "react-toastify";
 import useStatesFunc from "../../hooks/useStatesFunc";
 import Loader from "../../helpers/Loader";
+import InvoicePdfDownloadApi from "../../apis/public/others/InvoicePdfDownloadApi";
 
 const Invoice = () => {
   const [dispatch] = useDispatchFunc();
   const { id } = useParams();
   const [{ loading, invoiceData }] = useStatesFunc();
+  const [pdfFileDownloadLink, setPdfFileDownloadLink] = useState(null);
 
   useEffect(() => {
     const getinvoiceData = async () => {
       dispatch({ type: "loadingStart" });
+      // this is for File pdfDownload
+      const response = await InvoicePdfDownloadApi(id);
+      let blob = new Blob([response.data], { type: "application/pdf" });
+      setPdfFileDownloadLink(URL.createObjectURL(blob));
+
+      // this is for Details esssential for invoice
       const { data } = await InvoiceFetchDataFunc(id);
       dispatch({
         type: "invoiceDataFetched",
@@ -45,7 +53,7 @@ const Invoice = () => {
       dispatch({ type: "invoiceView" });
     };
   }, [dispatch, id]);
-  console.log(process.env.REACT_APP_INVOICEPDF, "REACT_APP_INVOICEPDF");
+
   const {
     invoiceLogoImg,
     sellerName,
@@ -75,7 +83,6 @@ const Invoice = () => {
   }
   return (
     <>
-      {console.log(invoiceData, "invoiceData")}
       <div className="bg-dark">
         <div>
           <div
@@ -132,9 +139,9 @@ const Invoice = () => {
           </Link>
         </div>
         {/* here print and savePdf btns */}
-        <div className="position-absolute  bottom-50  d-flex flex-column ms-3 d-print-none">
+        <div className="position-absolute top-50 bottom-md-50  d-flex flex-row flex-md-column ms-3 d-print-none align-content-end">
           <button
-            className="btn btn-info mb-5"
+            className="btn btn-info mb-5 me-5"
             onClick={() => {
               window.print();
             }}
@@ -142,12 +149,19 @@ const Invoice = () => {
             Print
           </button>
           <a
-            className="btn btn-danger"
+            className="btn btn-danger mb-5 me-5"
             href={`https://karthee-invoice-app-server.herokuapp.com/api/public/invoice/pdf/${id}`}
             target="_blank"
             rel="noreferrer"
           >
             Save as PDF
+          </a>
+          <a
+            className="btn btn-danger mb-5 me-5"
+            href={pdfFileDownloadLink}
+            download={`${sellerName}-invoice-${id}.pdf`}
+          >
+            Download File
           </a>
         </div>
       </div>
