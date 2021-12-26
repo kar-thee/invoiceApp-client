@@ -16,7 +16,6 @@ const MainScreen = () => {
   const navigate = useNavigate();
   const [dispatch] = useDispatchFunc();
   const [, getRole] = useUserFunc();
-
   const role = getRole();
 
   if (!role) {

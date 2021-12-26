@@ -18,7 +18,28 @@ import UserProvider from "./context/UserProvider";
 import Dashboard from "./pages/private/views/Dashboard";
 import Features from "./pages/private/views/Features";
 import Protected from "./components/Protected";
-// import Navigation from "./components/Navigation";
+
+//userRoutes
+import CreateUser from "./pages/private/CRUD/User/CreateUser";
+import UpdateUser from "./pages/private/CRUD/User/UpdateUser";
+import ReadUser from "./pages/private/CRUD/User/ReadUser";
+import ReadOneUser from "./pages/private/CRUD/User/ReadOneUser";
+import DeleteUser from "./pages/private/CRUD/User/DeleteUser";
+
+//productRoutes
+import CreateProduct from "./pages/private/CRUD/Product/CreateProduct";
+import UpdateProduct from "./pages/private/CRUD/Product/UpdateProduct";
+import ReadProducts from "./pages/private/CRUD/Product/ReadProducts";
+import ReadOneProduct from "./pages/private/CRUD/Product/ReadOneProduct";
+import DeleteProduct from "./pages/private/CRUD/Product/DeleteProduct";
+
+//invoiceRoutes
+import CreateInvoice from "./pages/private/CRUD/Invoice/CreateInvoice";
+import UpdateInvoice from "./pages/private/CRUD/Invoice/UpdateInvoice";
+import ReadAllInvoices from "./pages/private/CRUD/Invoice/ReadAllInvoices";
+import ReadOneInvoice from "./pages/private/CRUD/Invoice/ReadOneInvoice";
+import DeleteInvoice from "./pages/private/CRUD/Invoice/DeleteInvoice";
+
 import Priorities from "./pages/private/views/Priorities";
 import MainScreen from "./pages/private/views/MainScreen";
 
@@ -94,8 +115,139 @@ function App() {
                 </Protected>
               }
             />
+
+            {/* here all user crud components */}
+            <Route
+              path="user/create"
+              element={
+                <Protected redirect={<Signin />}>
+                  <CreateUser />
+                </Protected>
+              }
+            />
+            <Route
+              path="user/update"
+              element={
+                <Protected redirect={<Signin />}>
+                  <UpdateUser />
+                </Protected>
+              }
+            />
+            <Route
+              path="user/readAll"
+              element={
+                <Protected redirect={<Signin />}>
+                  <ReadUser />
+                </Protected>
+              }
+            />
+            <Route
+              path="user/readOne"
+              element={
+                <Protected redirect={<Signin />}>
+                  <ReadOneUser />
+                </Protected>
+              }
+            />
+            <Route
+              path="user/delete"
+              element={
+                <Protected redirect={<Signin />}>
+                  <DeleteUser />
+                </Protected>
+              }
+            />
+
+            {/* here product CRUD routes */}
+            <Route
+              path="product/create"
+              element={
+                <Protected redirect={<Signin />}>
+                  <CreateProduct />
+                </Protected>
+              }
+            />
+            <Route
+              path="product/update"
+              element={
+                <Protected redirect={<Signin />}>
+                  <UpdateProduct />
+                </Protected>
+              }
+            />
+            <Route
+              path="product/readAll"
+              element={
+                <Protected redirect={<Signin />}>
+                  <ReadProducts />
+                </Protected>
+              }
+            />
+            <Route
+              path="product/readOne"
+              element={
+                <Protected redirect={<Signin />}>
+                  <ReadOneProduct />
+                </Protected>
+              }
+            />
+            <Route
+              path="product/delete"
+              element={
+                <Protected redirect={<Signin />}>
+                  <DeleteProduct />
+                </Protected>
+              }
+            />
+
+            {/* here invoice CRUD routes */}
+
+            <Route
+              path="invoice/create"
+              element={
+                <Protected redirect={<Signin />}>
+                  <CreateInvoice />
+                </Protected>
+              }
+            />
+            <Route
+              path="invoice/update"
+              element={
+                <Protected redirect={<Signin />}>
+                  <UpdateInvoice />
+                </Protected>
+              }
+            />
+            <Route
+              path="invoice/delete"
+              element={
+                <Protected redirect={<Signin />}>
+                  <DeleteInvoice />
+                </Protected>
+              }
+            />
+            <Route
+              path="invoice/:id"
+              element={
+                <Protected redirect={<Signin />}>
+                  <ReadOneInvoice />
+                </Protected>
+              }
+            />
+            <Route
+              path="invoice/readAll"
+              element={
+                <Protected redirect={<Signin />}>
+                  <ReadAllInvoices />
+                </Protected>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Route>
+
+          <Route path="*" element={<NotFound />} />
+
+          {/* here all app routes completes */}
 
           <Route path="*" element={<NotFound />} />
         </Routes>

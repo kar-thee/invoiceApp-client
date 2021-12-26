@@ -1,6 +1,6 @@
 import React from "react";
 
-const UpdateInvoice = () => {
+const ReadOneUser = () => {
   return (
     <div>
       <div>hi</div>
@@ -8,4 +8,4 @@ const UpdateInvoice = () => {
   );
 };
 
-export default UpdateInvoice;
+export default ReadOneUser;
