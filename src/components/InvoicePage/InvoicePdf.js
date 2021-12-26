@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import InvoiceLogoHeader from "./InvoiceLogoHeader";
 import InvoiceFromToInfo from "./InvoiceFromToInfo";
@@ -12,30 +12,6 @@ import InvoiceFooterNote from "./InvoiceFooterNote";
 import useDispatchFunc from "../../hooks/useDispatchFunc";
 import InvoiceFetchDataFunc from "../../apis/public/others/InvoiceFetchDataFunc";
 import useStatesFunc from "../../hooks/useStatesFunc";
-import Loader from "../../helpers/Loader";
-
-const invoiceDataObj = {
-  invoiceLogoImg: null,
-  sellerName: "kae IMPEX pvt ltd.",
-  customerName: "customer1",
-  customerEmail: "customer1@gmail.com",
-  invoiceNo: "kae-40362422479",
-  invoiceDate: "24/12/2021",
-  productName: "sony 4k Tv",
-  qty: 2,
-  price: 100000,
-  tax: 18,
-  taxCost: 18000,
-  costAfterTax: 118000,
-  totalTaxAmt: 36000,
-  totalFinalAmt: 236000,
-  invoiceCreaterName: "karthee",
-  invoiceCreaterRole: "admin",
-  invoiceCreaterEmail: "ourworldourpeople@gmail.com",
-  dueDate: 7,
-  _id: "61c5f1b6b82bab9af6bc02d5",
-  __v: 0,
-};
 
 const Invoice = () => {
   const [dispatch] = useDispatchFunc();

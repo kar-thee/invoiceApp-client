@@ -15,29 +15,6 @@ import { toast } from "react-toastify";
 import useStatesFunc from "../../hooks/useStatesFunc";
 import Loader from "../../helpers/Loader";
 
-const invoiceDataObj = {
-  invoiceLogoImg: null,
-  sellerName: "kae IMPEX pvt ltd.",
-  customerName: "customer1",
-  customerEmail: "customer1@gmail.com",
-  invoiceNo: "kae-40362422479",
-  invoiceDate: "24/12/2021",
-  productName: "sony 4k Tv",
-  qty: 2,
-  price: 100000,
-  tax: 18,
-  taxCost: 18000,
-  costAfterTax: 118000,
-  totalTaxAmt: 36000,
-  totalFinalAmt: 236000,
-  invoiceCreaterName: "karthee",
-  invoiceCreaterRole: "admin",
-  invoiceCreaterEmail: "ourworldourpeople@gmail.com",
-  dueDate: 7,
-  _id: "61c5f1b6b82bab9af6bc02d5",
-  __v: 0,
-};
-
 const Invoice = () => {
   const [dispatch] = useDispatchFunc();
   const { id } = useParams();
@@ -68,7 +45,7 @@ const Invoice = () => {
       dispatch({ type: "invoiceView" });
     };
   }, [dispatch, id]);
-
+  console.log(process.env.REACT_APP_INVOICEPDF, "REACT_APP_INVOICEPDF");
   const {
     invoiceLogoImg,
     sellerName,
@@ -166,7 +143,7 @@ const Invoice = () => {
           </button>
           <a
             className="btn btn-danger"
-            href={`${process.env.REACT_APP_INVOICEPDF}/${id}`}
+            href={`https://karthee-invoice-app-server.herokuapp.com/api/public/invoice/pdf/${id}`}
             target="_blank"
             rel="noreferrer"
           >
