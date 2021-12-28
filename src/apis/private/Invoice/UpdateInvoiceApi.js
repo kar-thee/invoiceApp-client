@@ -1,12 +1,17 @@
 import axios from "axios";
 
-const UpdateInvoiceApi = async (id, data) => {
+const UpdateInvoiceApi = async (id, data, authorizationToken) => {
   //id as params
   // data = { invoiceLogoImg, productName, qty, price, tax, dueDate }
   try {
     const response = await axios.put(
       `${process.env.REACT_APP_CRUDPRODUCT}/${id}`,
-      data
+      data,
+      {
+        headers: {
+          Authorization: `BEARER ${authorizationToken}`,
+        },
+      }
     );
     return response;
   } catch (e) {

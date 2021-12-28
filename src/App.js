@@ -126,7 +126,7 @@ function App() {
               }
             />
             <Route
-              path="user/update"
+              path="user/update/:id"
               element={
                 <Protected redirect={<Signin />}>
                   <UpdateUser />
@@ -142,7 +142,7 @@ function App() {
               }
             />
             <Route
-              path="user/readOne"
+              path="user/readOne/:id"
               element={
                 <Protected redirect={<Signin />}>
                   <ReadOneUser />
@@ -150,7 +150,7 @@ function App() {
               }
             />
             <Route
-              path="user/delete"
+              path="user/delete/:email"
               element={
                 <Protected redirect={<Signin />}>
                   <DeleteUser />
@@ -168,7 +168,7 @@ function App() {
               }
             />
             <Route
-              path="product/update"
+              path="product/update/:id"
               element={
                 <Protected redirect={<Signin />}>
                   <UpdateProduct />
@@ -184,7 +184,7 @@ function App() {
               }
             />
             <Route
-              path="product/readOne"
+              path="product/readOne/:id"
               element={
                 <Protected redirect={<Signin />}>
                   <ReadOneProduct />

@@ -1,10 +1,15 @@
 import axios from "axios";
 
-const CreateUserApi = async (id) => {
+const CreateUserApi = async (id, authorizationToken) => {
   // data = { name, email, password, userType }
   try {
     const response = await axios.delete(
-      `${process.env.REACT_APP_CRUDPRODUCT}/${id}`
+      `${process.env.REACT_APP_CRUDPRODUCT}/${id}`,
+      {
+        headers: {
+          Authorization: `BEARER ${authorizationToken}`,
+        },
+      }
     );
     return response;
   } catch (e) {

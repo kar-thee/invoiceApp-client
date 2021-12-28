@@ -1,10 +1,15 @@
 import axios from "axios";
 
-const GetOneProductApi = async (id) => {
+const GetOneProductApi = async (id, authorizationToken) => {
   // data = id
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_CRUDPRODUCT}/${id}`
+      `${process.env.REACT_APP_CRUDPRODUCT}/${id}`,
+      {
+        headers: {
+          Authorization: `BEARER ${authorizationToken}`,
+        },
+      }
     );
     return response;
   } catch (e) {

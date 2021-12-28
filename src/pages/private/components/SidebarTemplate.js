@@ -10,14 +10,17 @@ const SidebarTemplate = ({ navArray }) => {
     <>
       <div
         className={sidebar ? "col-4 col-md-3 col-lg-2 border fixed" : "d-none"}
-        style={{ height: "100vh" }}
+        style={{ minHeight: "100vh" }}
       >
         <div className="container">
           <nav className="overflow-hidden">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 py-4">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 py-4">
               {navArray &&
                 navArray.map((navElement) => (
-                  <li className="nav-item py-2 sidebar-links">
+                  <li
+                    className="nav-item py-2 sidebar-links"
+                    key={navElement.href}
+                  >
                     <NavLink
                       className={({ isActive }) =>
                         isActive ? "nav-link active text-success" : "nav-link"

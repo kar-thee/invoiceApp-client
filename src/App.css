@@ -1,6 +1,5 @@
 .signup-background {
   background-color: aquamarine !important;
-  height: max-content !important;
 }
 
 .navBar-background {
@@ -36,4 +35,11 @@
   .invoiceLogoSize {
     width: 120px;
   }
+}
+
+.mouseCursorChanger {
+  cursor: pointer;
+}
+.mouseCursorChanger:hover {
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
 }

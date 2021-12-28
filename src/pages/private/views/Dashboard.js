@@ -53,7 +53,7 @@ const Dashboard = () => {
           {/* this is mainscreen */}
           <div
             className="col container-fluid border shadow"
-            style={{ height: "100vh" }}
+            style={{ minHeight: "100vh" }}
           >
             <div>
               <Outlet />

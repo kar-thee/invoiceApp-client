@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const CreateInvoiceApi = async (data) => {
+const CreateInvoiceApi = async (data, authorizationToken) => {
   //    data = {
   //     invoiceLogoImg,
   //     sellerName,
@@ -13,7 +13,11 @@ const CreateInvoiceApi = async (data) => {
   //     dueDate,
   //   }
   try {
-    const response = await axios.post(process.env.REACT_APP_CRUDINVOICE, data);
+    const response = await axios.post(process.env.REACT_APP_CRUDINVOICE, data, {
+      headers: {
+        Authorization: `BEARER ${authorizationToken}`,
+      },
+    });
     return response;
   } catch (e) {
     console.log(e, " err in CreateInvoiceApi");
