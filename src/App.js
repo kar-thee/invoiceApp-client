@@ -192,7 +192,7 @@ function App() {
               }
             />
             <Route
-              path="product/delete"
+              path="product/delete/:id"
               element={
                 <Protected redirect={<Signin />}>
                   <DeleteProduct />

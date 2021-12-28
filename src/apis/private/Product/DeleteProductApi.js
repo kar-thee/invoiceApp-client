@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const CreateUserApi = async (id, authorizationToken) => {
-  // data = { name, email, password, userType }
+  // id as params
   try {
     const response = await axios.delete(
       `${process.env.REACT_APP_CRUDPRODUCT}/${id}`,
