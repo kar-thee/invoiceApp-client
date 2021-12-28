@@ -5,7 +5,7 @@ const UpdateInvoiceApi = async (id, data, authorizationToken) => {
   // data = { invoiceLogoImg, productName, qty, price, tax, dueDate }
   try {
     const response = await axios.put(
-      `${process.env.REACT_APP_GETONEINVOICE}/${id}`,
+      `${process.env.REACT_APP_CRUDINVOICE}/${id}`,
       data,
       {
         headers: {
