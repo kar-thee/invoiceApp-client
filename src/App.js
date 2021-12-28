@@ -211,7 +211,7 @@ function App() {
               }
             />
             <Route
-              path="invoice/update"
+              path="invoice/update/:id"
               element={
                 <Protected redirect={<Signin />}>
                   <UpdateInvoice />
@@ -219,7 +219,7 @@ function App() {
               }
             />
             <Route
-              path="invoice/delete"
+              path="invoice/delete/:id"
               element={
                 <Protected redirect={<Signin />}>
                   <DeleteInvoice />
@@ -227,7 +227,7 @@ function App() {
               }
             />
             <Route
-              path="invoice/:id"
+              path="invoice/readOne/:id"
               element={
                 <Protected redirect={<Signin />}>
                   <ReadOneInvoice />

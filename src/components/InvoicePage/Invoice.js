@@ -39,7 +39,6 @@ const Invoice = () => {
 
       if (data.type === "success") {
         toast.success(data.msg);
-        dispatch({ type: "signout" });
       } else {
         toast.warning(data.msg);
       }
