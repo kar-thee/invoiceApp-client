@@ -34,7 +34,7 @@ const MainScreenTemplate = ({ role }) => {
       );
       if (countRes.data.type === "success") {
         const dataCountArray = countRes.data.dataFoundArray;
-        setCount(dataCountArray.length + 1);
+        setCount(dataCountArray.length);
       } else {
         setCount(0);
       }

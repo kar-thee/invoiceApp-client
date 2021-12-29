@@ -9,8 +9,7 @@ const SidebarTemplate = ({ navArray }) => {
   return (
     <>
       <div
-        className={sidebar ? "col-4 col-md-3 col-lg-2 border fixed" : "d-none"}
-        style={{ minHeight: "100vh" }}
+        className={sidebar ? "col-12 col-md-3 col-lg-2 border fixed" : "d-none"}
       >
         <div className="container">
           <nav className="overflow-hidden">
