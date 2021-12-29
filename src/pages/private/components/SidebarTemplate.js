@@ -23,7 +23,9 @@ const SidebarTemplate = ({ navArray }) => {
                   >
                     <NavLink
                       className={({ isActive }) =>
-                        isActive ? "nav-link active text-success" : "nav-link"
+                        isActive
+                          ? "nav-link active text-success fw-bold"
+                          : "nav-link"
                       }
                       to={navElement.href}
                       key={navElement.id}

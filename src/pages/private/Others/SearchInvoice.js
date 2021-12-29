@@ -51,7 +51,7 @@ const SearchInvoice = () => {
           break;
         }
         case "invoiceDate": {
-          setHelpText("28/12/2021");
+          setHelpText("12/28/2021");
           break;
         }
         case "productName": {

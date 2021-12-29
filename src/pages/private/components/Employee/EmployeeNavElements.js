@@ -2,17 +2,22 @@ const navArray = [
   {
     name: "Dashboard",
     href: "/app/dashboard",
+    id: "Employee0",
+  },
+  {
+    name: "Search Invoice",
+    href: "/app/invoice/search",
     id: "Employee1",
   },
   {
-    name: "Features",
-    href: "/app/features",
+    name: "Create Invoice",
+    href: "/app/invoice/create",
     id: "Employee2",
   },
   {
-    name: "Priorities",
-    href: "/app/priority",
-    id: "Employee3",
+    name: "All Products",
+    href: "/app/product/readAll",
+    id: "Employee4",
   },
 ];
 
