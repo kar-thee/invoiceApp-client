@@ -1,7 +1,15 @@
 import React from "react";
 
+import useStatesFunc from "../../../../hooks/useStatesFunc";
+import MainScreenTemplate from "../MainScreenTemplate";
+
 const AdminScreen = () => {
-  return <>Hello Admin</>;
+  const [{ role }] = useStatesFunc();
+  return (
+    <>
+      <MainScreenTemplate role={role} />
+    </>
+  );
 };
 
 export default AdminScreen;

@@ -1,31 +1,41 @@
 import React, { useEffect, useState } from "react";
-import SearchFoundList from "../../Others/SearchFoundList";
+import SearchFoundList from "../Others/SearchFoundList";
 
-import SearchInvoiceApi from "../../../../apis/private/others/SearchInvoiceApi";
-import useStatesFunc from "../../../../hooks/useStatesFunc";
+import SearchInvoiceApi from "../../../apis/private/others/SearchInvoiceApi";
+import useStatesFunc from "../../../hooks/useStatesFunc";
 
-import NothingToShow from "../../Others/NothingToShow";
+import NothingToShow from "../Others/NothingToShow";
 
-const CustomerScreen = () => {
+const MainScreenTemplate = ({ role }) => {
   const [data, setData] = useState();
   const [count, setCount] = useState();
-  const [{ token, role }] = useStatesFunc();
+  const [{ token }] = useStatesFunc();
 
   useEffect(() => {
     (async () => {
-      //since we dont have email, we encode from token
-      const base64TokenString = token.split(".")[1];
-      const payload = JSON.parse(atob(base64TokenString));
       const roleRes = await SearchInvoiceApi(
-        { key: "customerEmail", value: payload.email },
+        { key: "invoiceCreaterRole", value: role },
         token
       );
       if (roleRes.data.type === "success") {
         setData(roleRes.data.dataFoundArray);
-        const dataCountArray = roleRes.data.dataFoundArray;
-        setCount(dataCountArray.length + 1);
       } else {
         setData(false);
+      }
+    })();
+  }, [role, token, count]);
+
+  useEffect(() => {
+    (async () => {
+      const today = new Date().toLocaleDateString();
+      const countRes = await SearchInvoiceApi(
+        { key: "invoiceDate", value: today },
+        token
+      );
+      if (countRes.data.type === "success") {
+        const dataCountArray = countRes.data.dataFoundArray;
+        setCount(dataCountArray.length + 1);
+      } else {
         setCount(0);
       }
     })();
@@ -33,19 +43,19 @@ const CustomerScreen = () => {
 
   return (
     <>
-      <div className=" container p-md-5  my-5 py-2 shadow-lg signup-background">
+      <div className="col container p-md-5 py-2 my-5 shadow-lg signup-background">
         <div className="display-2 my-3 p-md-3 col text-secondary text-center shadow ">
           Welcome {role.toUpperCase()}
         </div>
         <div className="col my-2 p-md-3 mx-auto d-flex justify-content-center ">
           <div className="p-md-5 p-4 bg-dark text-center text-light mx-auto shadow">
             <div className="fw-bolder lead">
-              Total Invoices For You : {count}{" "}
+              Invoice Counts Today : {count}{" "}
             </div>
           </div>
         </div>
         <div className="fw-bolder lead text-secondary ">
-          Invoices Generated For You :{" "}
+          Invoices Created By You :
         </div>
         <div className="">
           {data ? (
@@ -67,4 +77,4 @@ const CustomerScreen = () => {
   );
 };
 
-export default CustomerScreen;
+export default MainScreenTemplate;

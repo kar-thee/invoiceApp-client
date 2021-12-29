@@ -1,9 +1,10 @@
 import React from "react";
+import NothingToShow from "../pages/private/Others/NothingToShow";
 
 const NotFound = () => {
   return (
     <div>
-      <div>Nothing to show You</div>
+      <NothingToShow />
     </div>
   );
 };

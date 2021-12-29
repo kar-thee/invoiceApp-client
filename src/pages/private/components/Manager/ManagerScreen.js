@@ -1,9 +1,13 @@
 import React from "react";
 
+import useStatesFunc from "../../../../hooks/useStatesFunc";
+import MainScreenTemplate from "../MainScreenTemplate";
+
 const ManagerScreen = () => {
+  const [{ role }] = useStatesFunc();
   return (
     <>
-      <div>Hello Manager</div>
+      <MainScreenTemplate role={role} />
     </>
   );
 };

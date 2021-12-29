@@ -5,8 +5,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 //publicLayout
 import Home from "./components/Home";
-// import Navigation from "./components/Navigation";
+
+//Navigation
+import NavigationBar from "./NavigationBar";
+
 import NotFound from "./components/NotFound";
+
 //authRoutes
 import Signup from "./pages/public/views/Signup";
 import Signin from "./pages/public/views/Signin";
@@ -14,9 +18,10 @@ import ForgotPassword from "./pages/public/views/ForgotPassword";
 import ResetPassword from "./pages/public/views/ResetPassword";
 import EmailActivation from "./pages/public/views/EmailActivation";
 import UserProvider from "./context/UserProvider";
+
 //privateRoutes
 import Dashboard from "./pages/private/views/Dashboard";
-import Features from "./pages/private/views/Features";
+import MainScreen from "./pages/private/views/MainScreen";
 import Protected from "./components/Protected";
 
 //userRoutes
@@ -39,15 +44,11 @@ import UpdateInvoice from "./pages/private/CRUD/Invoice/UpdateInvoice";
 import ReadAllInvoices from "./pages/private/CRUD/Invoice/ReadAllInvoices";
 import ReadOneInvoice from "./pages/private/CRUD/Invoice/ReadOneInvoice";
 import DeleteInvoice from "./pages/private/CRUD/Invoice/DeleteInvoice";
+import SearchInvoice from "./pages/private/Others/SearchInvoice";
 
-import Priorities from "./pages/private/views/Priorities";
-import MainScreen from "./pages/private/views/MainScreen";
-
+//invoice Public routes
 import Invoice from "./components/InvoicePage/Invoice";
 import InvoicePdf from "./components/InvoicePage/InvoicePdf";
-
-import NavigationBar from "./NavigationBar";
-import SearchInvoice from "./pages/private/Others/SearchInvoice";
 
 function App() {
   return (
@@ -97,22 +98,6 @@ function App() {
               element={
                 <Protected redirect={<Signin />}>
                   <MainScreen />
-                </Protected>
-              }
-            />
-            <Route
-              path="features"
-              element={
-                <Protected redirect={<Signin />}>
-                  <Features />
-                </Protected>
-              }
-            />
-            <Route
-              path="priority"
-              element={
-                <Protected redirect={<Signin />}>
-                  <Priorities />
                 </Protected>
               }
             />

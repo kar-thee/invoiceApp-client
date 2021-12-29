@@ -1,17 +1,13 @@
 import React from "react";
 
+import useStatesFunc from "../../../../hooks/useStatesFunc";
+import MainScreenTemplate from "../MainScreenTemplate";
+
 const EmployeeScreen = () => {
+  const [{ role }] = useStatesFunc();
   return (
     <>
-      <div className="col  container-fluid bg-dark" style={{ height: "100vh" }}>
-        <div className=" bg-danger">
-          <div className="">
-            <div className="container" style={{ height: "100vh" }}>
-              Hello Employee
-            </div>
-          </div>
-        </div>
-      </div>
+      <MainScreenTemplate role={role} />
     </>
   );
 };
