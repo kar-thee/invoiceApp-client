@@ -42,10 +42,13 @@ const ReadOneInvoice = () => {
 
   return (
     <div>
-      <div>
-        <div>
-          <div className="d-flex flex-column flex-md-row ms-auto justify-content-evenly align-content-center row p-md-5 py-2">
-            <div className="col-6 m-3">
+      <div className="signup-background my-5 container shadow">
+        <div className="">
+          <div className="display-2 p-3 m-3 text-center text-secondary">
+            Invoice Info
+          </div>
+          <div className="d-flex flex-column flex-md-row ms-auto justify-content-evenly align-content-center row p-md-5 py-2 ">
+            <div className="col-8 col-md-6 m-3">
               <button
                 className="btn btn-warning w-100 my-2"
                 onClick={() => navigate(`/app/invoice/update/${id}`)}
@@ -53,7 +56,7 @@ const ReadOneInvoice = () => {
                 Update Invoice
               </button>
             </div>
-            <div className="col-6 m-3">
+            <div className="col-8 col-md-6 m-3">
               <button
                 className="btn btn-danger w-100 my-2"
                 onClick={() => navigate(`/app/invoice/delete/${id}`)}
@@ -61,17 +64,17 @@ const ReadOneInvoice = () => {
                 Delete Invoice
               </button>
             </div>
-            <div className="col-6 m-3">
+            <div className="col-8 col-md-6 m-3">
               <button
-                className="btn btn-danger w-100 my-2"
+                className="btn btn-info w-100 my-2"
                 onClick={() => navigate(`/invoicePdf/${id}`)}
               >
                 Preview Invoice
               </button>
             </div>
-            <div className="col-6 m-3">
+            <div className="col-8 col-md-6 m-3 ">
               <button
-                className="btn btn-danger w-100 my-2"
+                className="btn btn-dark w-100 my-2 text-break"
                 onClick={() => navigate(`/invoice/${id}`)}
               >
                 Print/Download invoice

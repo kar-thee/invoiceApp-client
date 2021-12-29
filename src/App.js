@@ -47,6 +47,7 @@ import Invoice from "./components/InvoicePage/Invoice";
 import InvoicePdf from "./components/InvoicePage/InvoicePdf";
 
 import NavigationBar from "./NavigationBar";
+import SearchInvoice from "./pages/private/Others/SearchInvoice";
 
 function App() {
   return (
@@ -239,6 +240,14 @@ function App() {
               element={
                 <Protected redirect={<Signin />}>
                   <ReadAllInvoices />
+                </Protected>
+              }
+            />
+            <Route
+              path="invoice/search"
+              element={
+                <Protected redirect={<Signin />}>
+                  <SearchInvoice />
                 </Protected>
               }
             />
