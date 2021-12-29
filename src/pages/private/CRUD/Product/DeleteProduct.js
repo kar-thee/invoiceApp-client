@@ -9,11 +9,16 @@ import DeleteProductApi from "../../../../apis/private/Product/DeleteProductApi"
 
 import Loader from "../../../../helpers/Loader";
 
+import { ADMIN } from "../../../../helpers/UserRoles";
+import useUserFunc from "../../../../hooks/useUserFunc";
+import NothingToShow from "../../Others/NothingToShow";
+
 const DeleteProduct = () => {
   const [{ loading, token }] = useStatesFunc();
   const [dispatch] = useDispatchFunc();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [, , checkUserAccess] = useUserFunc();
 
   useEffect(() => {
     (async () => {
@@ -28,6 +33,15 @@ const DeleteProduct = () => {
       }
     })();
   }, [dispatch, id, navigate, token]);
+
+  if (!checkUserAccess([ADMIN])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
+      </>
+    );
+  }
 
   if (loading) {
     return (

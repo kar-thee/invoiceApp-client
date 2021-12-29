@@ -10,12 +10,17 @@ import Loader from "../../../../helpers/Loader";
 import useDispatchFunc from "../../../../hooks/useDispatchFunc";
 import useStatesFunc from "../../../../hooks/useStatesFunc";
 
+import NothingToShow from "../../Others/NothingToShow";
+import { ADMIN, MANAGER, EMPLOYEE } from "../../../../helpers/UserRoles";
+import useUserFunc from "../../../../hooks/useUserFunc";
+
 const UpdateInvoice = () => {
   const [state, setState] = useState();
   const [dispatch] = useDispatchFunc();
   const [{ loading, token }] = useStatesFunc();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [, , checkUserAccess] = useUserFunc();
 
   useEffect(() => {
     const getinvoiceData = async () => {
@@ -39,6 +44,15 @@ const UpdateInvoice = () => {
     return (
       <>
         <Loader />
+      </>
+    );
+  }
+
+  if (!checkUserAccess([ADMIN, MANAGER, EMPLOYEE])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
       </>
     );
   }

@@ -11,9 +11,12 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../../helpers/Loader";
 
+import useUserFunc from "../../../../hooks/useUserFunc";
+import NothingToShow from "../../Others/NothingToShow";
+import { ADMIN, MANAGER } from "../../../../helpers/UserRoles";
+
 // id as params
 //data =  { email, name, userType }
-
 const UpdateUser = () => {
   // const initialValue = {
   //   name: data.name,
@@ -27,6 +30,7 @@ const UpdateUser = () => {
   const [dispatch] = useDispatchFunc();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [, , checkUserAccess] = useUserFunc();
 
   useEffect(() => {
     (async () => {
@@ -41,6 +45,15 @@ const UpdateUser = () => {
       }
     })();
   }, [dispatch, id, token]);
+
+  if (!checkUserAccess([ADMIN, MANAGER])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
+      </>
+    );
+  }
 
   const SubmitForm = async (ev) => {
     ev.preventDefault();

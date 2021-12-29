@@ -7,13 +7,28 @@ import useStatesFunc from "../../../../hooks/useStatesFunc";
 import CreateUserApi from "../../../../apis/private/User/CreateUserApi";
 import MiniSpinner from "../../../../helpers/MiniSpinner";
 
+import { ADMIN, MANAGER } from "../../../../helpers/UserRoles";
+import useUserFunc from "../../../../hooks/useUserFunc";
+import NothingToShow from "../../Others/NothingToShow";
+
 // data = { name, email, password, userType }
 const CreateUser = () => {
+  const [, , checkUserAccess] = useUserFunc();
   const initialValue = { name: "", email: "", password: "", userType: "" };
 
   const [state, setState] = useState(initialValue);
   const [{ loading, token }] = useStatesFunc();
   const [dispatch] = useDispatchFunc();
+  // const navigate = useNavigate();
+
+  if (!checkUserAccess([ADMIN, MANAGER])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
+      </>
+    );
+  }
 
   const SubmitForm = async (ev) => {
     ev.preventDefault();

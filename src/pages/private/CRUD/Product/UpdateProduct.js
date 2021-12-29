@@ -10,6 +10,10 @@ import Loader from "../../../../helpers/Loader";
 import UpdateProductApi from "../../../../apis/private/Product/UpdateProductApi";
 import GetOneProductApi from "../../../../apis/private/Product/GetOneProductApi";
 
+import { ADMIN, MANAGER } from "../../../../helpers/UserRoles";
+import useUserFunc from "../../../../hooks/useUserFunc";
+import NothingToShow from "../../Others/NothingToShow";
+
 // data = { productName, stockQuantity, price, tax }
 const UpdateProduct = () => {
   const initialValues = {
@@ -23,6 +27,7 @@ const UpdateProduct = () => {
   const [dispatch] = useDispatchFunc();
   const navigate = useNavigate();
   const { id } = useParams();
+  const [, , checkUserAccess] = useUserFunc();
 
   useEffect(() => {
     dispatch({ type: "loadingStart" });
@@ -36,6 +41,15 @@ const UpdateProduct = () => {
     })();
     dispatch({ type: "loadingStop" });
   }, [dispatch, id, token]);
+
+  if (!checkUserAccess([ADMIN, MANAGER])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
+      </>
+    );
+  }
 
   const SubmitForm = async (ev) => {
     dispatch({ type: "loadingStart" });

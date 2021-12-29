@@ -11,6 +11,10 @@ import CreateInvoiceApi from "../../../../apis/private/Invoice/CreateInvoiceApi"
 import MiniSpinner from "../../../../helpers/MiniSpinner";
 import Loader from "../../../../helpers/Loader";
 
+import NothingToShow from "../../Others/NothingToShow";
+import { ADMIN, MANAGER, EMPLOYEE } from "../../../../helpers/UserRoles";
+import useUserFunc from "../../../../hooks/useUserFunc";
+
 //  intialValue = {
 //   invoiceLogoImg,
 //   sellerName,
@@ -43,6 +47,7 @@ const CreateInvoice = () => {
   const [{ token, loading }] = useStatesFunc();
   const [dispatch] = useDispatchFunc();
   const navigate = useNavigate();
+  const [, , checkUserAccess] = useUserFunc();
 
   useEffect(() => {
     (async () => {
@@ -62,6 +67,15 @@ const CreateInvoice = () => {
     return (
       <>
         <Loader />
+      </>
+    );
+  }
+
+  if (!checkUserAccess([ADMIN, MANAGER, EMPLOYEE])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
       </>
     );
   }

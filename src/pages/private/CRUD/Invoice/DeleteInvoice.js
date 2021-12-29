@@ -9,11 +9,16 @@ import DeleteInvoiceApi from "../../../../apis/private/Invoice/DeleteInvoiceApi"
 
 import Loader from "../../../../helpers/Loader";
 
+import NothingToShow from "../../Others/NothingToShow";
+import { ADMIN, MANAGER } from "../../../../helpers/UserRoles";
+import useUserFunc from "../../../../hooks/useUserFunc";
+
 const DeleteInvoice = () => {
   const [{ loading, token }] = useStatesFunc();
   const [dispatch] = useDispatchFunc();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [, , checkUserAccess] = useUserFunc();
 
   useEffect(() => {
     (async () => {
@@ -33,6 +38,15 @@ const DeleteInvoice = () => {
     return (
       <>
         <Loader />
+      </>
+    );
+  }
+
+  if (!checkUserAccess([ADMIN, MANAGER])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
       </>
     );
   }

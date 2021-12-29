@@ -17,7 +17,18 @@ const useUserFunc = () => {
     }
   };
 
-  return [checkAuth, getRole];
+  const checkUserAccess = (validUserArray) => {
+    if (role) {
+      const isPresent = validUserArray.find(
+        (eachRoleItem) => eachRoleItem === role
+      );
+      return isPresent ? true : false;
+    } else {
+      return false;
+    }
+  };
+
+  return [checkAuth, getRole, checkUserAccess];
 };
 
 export default useUserFunc;

@@ -6,12 +6,17 @@ import Loader from "../../../../helpers/Loader";
 import useDispatchFunc from "../../../../hooks/useDispatchFunc";
 import useStatesFunc from "../../../../hooks/useStatesFunc";
 
+import { ADMIN, MANAGER, EMPLOYEE } from "../../../../helpers/UserRoles";
+import useUserFunc from "../../../../hooks/useUserFunc";
+import NothingToShow from "../../Others/NothingToShow";
+
 const ReadProducts = () => {
   const [state, setState] = useState();
   const [{ loading, token }] = useStatesFunc();
   const navigate = useNavigate();
   const { id } = useParams();
   const [dispatch] = useDispatchFunc();
+  const [, , checkUserAccess] = useUserFunc();
 
   useEffect(() => {
     (async () => {
@@ -26,6 +31,15 @@ const ReadProducts = () => {
       }
     })();
   }, [dispatch, id, token]);
+
+  if (!checkUserAccess([ADMIN, MANAGER, EMPLOYEE])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
+      </>
+    );
+  }
 
   if (loading) {
     return (

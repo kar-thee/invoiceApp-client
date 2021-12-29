@@ -9,12 +9,18 @@ import useStatesFunc from "../../../../hooks/useStatesFunc";
 
 import GetOneUserApi from "../../../../apis/private/User/GetOneUserApi";
 
+import { ADMIN, MANAGER, EMPLOYEE } from "../../../../helpers/UserRoles";
+
+import NothingToShow from "../../Others/NothingToShow";
+import useUserFunc from "../../../../hooks/useUserFunc";
+
 const ReadOneUser = () => {
   const [state, setState] = useState();
   const [{ token, loading }] = useStatesFunc();
   const [dispatch] = useDispatchFunc();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [, , checkUserAccess] = useUserFunc();
 
   useEffect(() => {
     (async () => {
@@ -29,6 +35,15 @@ const ReadOneUser = () => {
       }
     })();
   }, [dispatch, id, token]);
+
+  if (!checkUserAccess([ADMIN, MANAGER, EMPLOYEE])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
+      </>
+    );
+  }
 
   if (loading) {
     return (

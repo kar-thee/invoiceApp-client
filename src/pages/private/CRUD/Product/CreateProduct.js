@@ -8,6 +8,10 @@ import useStatesFunc from "../../../../hooks/useStatesFunc";
 import Loader from "../../../../helpers/Loader";
 import CreateProductApi from "../../../../apis/private/Product/CreateProductApi";
 
+import { ADMIN, MANAGER } from "../../../../helpers/UserRoles";
+import useUserFunc from "../../../../hooks/useUserFunc";
+import NothingToShow from "../../Others/NothingToShow";
+
 // data = { productName, stockQuantity, price, tax }
 const CreateProduct = () => {
   const initialValues = {
@@ -20,6 +24,16 @@ const CreateProduct = () => {
   const [{ token, loading }] = useStatesFunc();
   const [dispatch] = useDispatchFunc();
   const navigate = useNavigate();
+  const [, , checkUserAccess] = useUserFunc();
+
+  if (!checkUserAccess([ADMIN, MANAGER])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
+      </>
+    );
+  }
 
   const SubmitForm = async (ev) => {
     dispatch({ type: "loadingStart" });

@@ -7,11 +7,18 @@ import Loader from "../../../../helpers/Loader";
 import useDispatchFunc from "../../../../hooks/useDispatchFunc";
 import { useNavigate } from "react-router-dom";
 
+import { ADMIN, MANAGER, EMPLOYEE } from "../../../../helpers/UserRoles";
+
+import NothingToShow from "../../Others/NothingToShow";
+import useUserFunc from "../../../../hooks/useUserFunc";
+
 const ReadUser = () => {
   const [data, setData] = useState(null);
   const [{ token, loading }] = useStatesFunc();
   const [dispatch] = useDispatchFunc();
   const navigate = useNavigate();
+  const [, , checkUserAccess] = useUserFunc();
+
   useEffect(() => {
     (async () => {
       dispatch({ type: "loadingStart" });
@@ -25,6 +32,15 @@ const ReadUser = () => {
       }
     })();
   }, [dispatch, token]);
+
+  if (!checkUserAccess([ADMIN, MANAGER, EMPLOYEE])) {
+    toast.warning("You cant access");
+    return (
+      <>
+        <NothingToShow />
+      </>
+    );
+  }
 
   if (loading) {
     return <Loader />;
