@@ -63,6 +63,35 @@ const CreateInvoice = () => {
     })();
   }, [dispatch, token]);
 
+  useEffect(() => {
+    const changeProductState = () => {
+      //THIS SETS THE PRODUCT STATE
+      let productResult = undefined;
+      if (stateValues && stateValues.productName) {
+        const { productsArray } = invoiceEssentials;
+        productResult = productsArray.find(
+          (productItem) => productItem.productName === stateValues.productName
+        );
+        setProduct(productResult);
+      }
+      return productResult;
+    };
+
+    const changeCustomerState = () => {
+      // THIS SETS THE CUSTOMER STATE
+      if (stateValues && stateValues.customerName) {
+        const { customersArray } = invoiceEssentials;
+        const customerResult = customersArray.find(
+          (customerItem) => customerItem.name === stateValues.customerName
+        );
+        setCustomer(customerResult);
+        return customerResult;
+      }
+    };
+    changeCustomerState();
+    changeProductState();
+  }, [invoiceEssentials, stateValues]);
+
   if (loading) {
     return (
       <>
@@ -127,31 +156,6 @@ const CreateInvoice = () => {
     }
   };
 
-  const changeProductState = () => {
-    //THIS SETS THE PRODUCT STATE
-    let productResult = undefined;
-    if (stateValues && stateValues.productName) {
-      const { productsArray } = invoiceEssentials;
-      productResult = productsArray.find(
-        (productItem) => productItem.productName === stateValues.productName
-      );
-      setProduct(productResult);
-    }
-    return productResult;
-  };
-
-  const changeCustomerState = () => {
-    // THIS SETS THE CUSTOMER STATE
-    if (stateValues && stateValues.customerName) {
-      const { customersArray } = invoiceEssentials;
-      const customerResult = customersArray.find(
-        (customerItem) => customerItem.name === stateValues.customerName
-      );
-      setCustomer(customerResult);
-      return customerResult;
-    }
-  };
-
   return (
     <>
       <div className="container my-5 shadow p-3 signup-background">
@@ -210,7 +214,6 @@ const CreateInvoice = () => {
                   ...prev,
                   customerName: e.target.value,
                 }));
-                changeCustomerState();
               }}
             >
               <option value="">Select 1 customer</option>
@@ -228,8 +231,7 @@ const CreateInvoice = () => {
               Customer Email
             </label>
             <div className="text-secondary border fw-bold" id="customerEmail">
-              {(customer && customer.email) ||
-                (changeCustomerState() && changeCustomerState().email)}
+              {customer && customer.email}
             </div>
           </div>
           {/* productName */}
@@ -247,7 +249,6 @@ const CreateInvoice = () => {
                   ...prev,
                   productName: e.target.value,
                 }));
-                changeProductState();
               }}
             >
               <option value="">Select 1 Product</option>
@@ -265,8 +266,7 @@ const CreateInvoice = () => {
               Product Price
             </label>
             <div className="text-secondary border fw-bold" id="price">
-              {(product && product.price) ||
-                (changeProductState() && changeProductState().price)}
+              {product && product.price}
             </div>
           </div>
           {/* productTax */}
@@ -275,8 +275,7 @@ const CreateInvoice = () => {
               Product Tax
             </label>
             <div className="text-secondary border fw-bold" id="tax">
-              {(product && product.tax) ||
-                (changeProductState() && changeProductState().tax)}
+              {product && product.tax}
             </div>
           </div>
           {/* productQty */}
@@ -291,7 +290,7 @@ const CreateInvoice = () => {
               <input
                 type="range"
                 min="1"
-                max={(product && product.stockQuantity) || 10}
+                max={product && product.stockQuantity}
                 id="quantity"
                 placeholder="Product Quantity"
                 className="form-range"

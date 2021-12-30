@@ -61,7 +61,7 @@ const ReadUser = () => {
           <table className="table  table-hover table-responsive ">
             <thead>
               <tr>
-                <th>S.no</th>
+                <th className="d-none d-md-table-cell">S.no</th>
                 <th>Name</th>
                 <th>Role</th>
               </tr>
@@ -73,7 +73,7 @@ const ReadUser = () => {
                   onClick={() => navigate(`/app/user/readOne/${userItem._id}`)}
                   className="mouseCursorChanger"
                 >
-                  <td>{index + 1}</td>
+                  <td className="d-none d-md-table-cell">{index + 1}</td>
                   <td>{userItem.name}</td>
                   <td
                     className={`${
@@ -81,7 +81,7 @@ const ReadUser = () => {
                     } 
                         ${userItem.role === "admin" && "text-danger"}
                         ${userItem.role === "employee" && "text-warning"}
-                        ${userItem.role === "manager" && "text-info"}`}
+                        ${userItem.role === "manager" && "text-primary"}`}
                   >
                     {userItem.role}
                   </td>

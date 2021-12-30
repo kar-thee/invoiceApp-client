@@ -69,32 +69,32 @@ const ReadProducts = () => {
               <thead>
                 <tr className="text-break">
                   <th>Product Name </th>
-                  <td>:</td>
+                  <td className="d-none d-md-table-cell">:</td>
                   <td>{state.productName}</td>
                 </tr>
                 <tr className="text-break">
                   <th>Product Price </th>
-                  <td>:</td>
+                  <td className="d-none d-md-table-cell">:</td>
                   <td>₹{state.price}</td>
                 </tr>
                 <tr className="text-break">
                   <th>stock Quantity</th>
-                  <td>:</td>
+                  <td className="d-none d-md-table-cell">:</td>
                   <td>{state.stockQuantity}</td>
                 </tr>
                 <tr className="text-break">
                   <th>Product tax Rate</th>
-                  <td>:</td>
+                  <td className="d-none d-md-table-cell">:</td>
                   <td>{state.tax}%</td>
                 </tr>
                 <tr className="text-break">
                   <th>Tax Amount for 1 Product</th>
-                  <td>:</td>
+                  <td className="d-none d-md-table-cell">:</td>
                   <td>₹{state.price * (state.tax / 100)}</td>
                 </tr>
                 <tr className="text-break">
                   <th>Total Amount for 1 Product with Tax</th>
-                  <td>:</td>
+                  <td className="d-none d-md-table-cell">:</td>
                   <td>₹{state.price + state.price * (state.tax / 100)}</td>
                 </tr>
               </thead>

@@ -71,22 +71,22 @@ const ReadOneUser = () => {
             <thead>
               <tr>
                 <th>Name </th>
-                <td>:</td>
+                <td className="d-none d-md-table-cell">:</td>
                 <td>{state && state.name}</td>
               </tr>
               <tr>
                 <th>Email </th>
-                <td>:</td>
+                <td className="d-none d-md-table-cell">:</td>
                 <td className="text-break">{state && state.email}</td>
               </tr>
               <tr>
                 <th>Role </th>
-                <td>:</td>
+                <td className="d-none d-md-table-cell">:</td>
                 <td>{state && state.role}</td>
               </tr>
               <tr>
                 <th>Id Verified </th>
-                <td>:</td>
+                <td className="d-none d-md-table-cell">:</td>
                 <td>{state && state.isVerified ? "true" : "false"}</td>
               </tr>
             </thead>

@@ -11,7 +11,7 @@ const SearchFoundList = ({ state }) => {
             <tr>
               <th>Customer Name</th>
               <th>Product Name</th>
-              <th>Total</th>
+              <th className="d-none d-md-table-cell">Total</th>
             </tr>
           </thead>
           <tbody>
@@ -26,7 +26,9 @@ const SearchFoundList = ({ state }) => {
                 >
                   <td>{invoiceObj.customerName}</td>
                   <td>{invoiceObj.productName}</td>
-                  <td>{invoiceObj.totalFinalAmt}</td>
+                  <td className="d-none d-md-table-cell">
+                    {invoiceObj.totalFinalAmt}
+                  </td>
                 </tr>
               ))}
           </tbody>
