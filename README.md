@@ -4,8 +4,6 @@ a frontend application using Reactjs (full Stack MERN Application)
 <br><br>
 <h1>A MERN stack (SPA) REACT Application deployed @ Netlify</h1>
 <br><br>
-<h6>Link To Backend Repo : <a href="https://github.com/kar-thee/invoiceApp-server" target="_blank">Click here to go invoiceApp-server repository</a></h6>
-<br><br>
 <h2>You can Generate a Invoice and download it as pdf file without any hassle using this invoiceApp</h2>
 <a href="https://github.com/kar-thee/invoiceApp-server/blob/master/pdf_pupeeter-1.pdf" target="_blank">Click here to Get Demo Invoice</a>
 <br><br>
@@ -15,11 +13,12 @@ a frontend application using Reactjs (full Stack MERN Application)
 <h4>CREDENTIALS : </h4>
 <a href="https://docs.google.com/document/d/1cITpj7dpVbwjfrkZCmUIQ-HgKrqqC7k_4MP_uiT9weE/edit" target="_blank">Click here to get SIGNIN CREDENTIALS</a>
 <br>
+<br>
+<h6>Link To Backend Repo : <a href="https://github.com/kar-thee/invoiceApp-server" target="_blank">Click here to go invoiceApp-server repository</a></h6>
 <br><br>
 <h3>Implemented Access Rights for every DIFFERENT TYPES OF USERS</h3>
 <a href="https://docs.google.com/document/d/1fWZuMyQ-GwEnmQeR_PDIYw09CVJMvZtZLK-9LQLJz0U/edit" target="_blank">Click here to know ALL RULES</a>
 <br>
-<br><br>
 <br>
 <h5>This App has 4 different types of USER Dashboards with dynamic Sidebar and MainScreen :</h5>
 <br>
