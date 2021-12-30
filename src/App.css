@@ -11,19 +11,17 @@
   left: 3;
 }
 
-@media screen and (min-width: 592px) {
-  .sidebar-links:hover {
-    text-align: center;
-    background-color: #7fffd4;
-    border-radius: 5%;
-  }
-  .sidebar-links:active,
-  .sidebar-links:focus {
-    border: 2px solid crimson;
-    text-align: center;
-    background-color: #7fffd4;
-    border-radius: 5%;
-  }
+.sidebar-links:hover {
+  text-align: center;
+  background-color: #7fffd4;
+  border-radius: 5%;
+}
+.sidebar-links:active,
+.sidebar-links:focus {
+  border: 2px solid crimson;
+  text-align: center;
+  background-color: #7fffd4;
+  border-radius: 5%;
 }
 
 .invoiceLogoSize {

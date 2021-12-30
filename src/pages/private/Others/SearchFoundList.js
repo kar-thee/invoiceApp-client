@@ -27,7 +27,7 @@ const SearchFoundList = ({ state }) => {
                   <td>{invoiceObj.customerName}</td>
                   <td>{invoiceObj.productName}</td>
                   <td className="d-none d-md-table-cell">
-                    {invoiceObj.totalFinalAmt}
+                    ₹ {invoiceObj.totalFinalAmt}
                   </td>
                 </tr>
               ))}

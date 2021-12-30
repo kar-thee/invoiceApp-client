@@ -18,7 +18,7 @@ const SearchInvoiceApi = async (data, authorizationToken) => {
     );
     return response;
   } catch (e) {
-    console.log(e, " err-in SearchInvoiceApi ");
+    console.log(e.message, " err-in SearchInvoiceApi ");
     return e.response;
   }
 };

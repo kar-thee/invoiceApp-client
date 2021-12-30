@@ -15,9 +15,9 @@ const CustomerScreen = () => {
     (async () => {
       //since we dont have email, we encode from token
       const base64TokenString = token.split(".")[1];
-      const payload = JSON.parse(atob(base64TokenString));
+      const { email } = JSON.parse(atob(base64TokenString));
       const roleRes = await SearchInvoiceApi(
-        { key: "customerEmail", value: payload.email },
+        { key: "customerEmail", value: email },
         token
       );
       if (roleRes.data.type === "success") {
